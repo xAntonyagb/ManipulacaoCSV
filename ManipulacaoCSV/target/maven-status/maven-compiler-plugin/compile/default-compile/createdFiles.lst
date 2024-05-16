@@ -1,0 +1,16 @@
+br\unipar\manipulacaocsv\entities\PessoaEntity.class
+br\unipar\manipulacaocsv\services\PessoaService.class
+br\unipar\manipulacaocsv\ManupulacaoCSV.class
+br\unipar\manipulacaocsv\views\ManipulacaoCSVJFrame$6.class
+br\unipar\manipulacaocsv\views\ManipulacaoCSVJFrame$7.class
+br\unipar\manipulacaocsv\repositories\PessoaRepository.class
+br\unipar\manipulacaocsv\views\ManipulacaoCSVJFrame$5.class
+br\unipar\manipulacaocsv\views\ManipulacaoCSVJFrame$1.class
+br\unipar\manipulacaocsv\views\ManipulacaoCSVJFrame$3.class
+br\unipar\manipulacaocsv\views\ManipulacaoCSVJFrame$4.class
+br\unipar\manipulacaocsv\views\ManipulacaoCSVJFrame.class
+br\unipar\manipulacaocsv\views\ManipulacaoCSVJFrame$2.class
+br\unipar\manipulacaocsv\views\ManipulacaoCSVJFrame$8.class
+br\unipar\manipulacaocsv\repositories\PessoaRepositoryImp.class
+br\unipar\manipulacaocsv\tablemodels\PessoaTableModel.class
+br\unipar\manipulacaocsv\util\EntityManagerUtil.class
