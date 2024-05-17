@@ -1,6 +1,6 @@
 package br.unipar.manipulacaocsv.views;
 
-import br.unipar.manipulacaocsv.ManupulacaoCSV;
+import br.unipar.manipulacaocsv.ManipulacaoCSV;
 import br.unipar.manipulacaocsv.entities.PessoaEntity;
 import br.unipar.manipulacaocsv.services.PessoaService;
 import br.unipar.manipulacaocsv.tablemodels.PessoaTableModel;
@@ -447,7 +447,7 @@ public class ManipulacaoCSVJFrame extends javax.swing.JFrame {
             }
         } 
         catch(Exception ex) {
-            Logger.getLogger(ManupulacaoCSV.class.getName()).severe(ex.getMessage());
+            Logger.getLogger(ManipulacaoCSV.class.getName()).severe(ex.getMessage());
             JOptionPane.showMessageDialog(null, "Um erro inesperado aconteceu:\n" + ex.getMessage(), "Erro ao transformar arquivo", JOptionPane.ERROR_MESSAGE);
             
         }

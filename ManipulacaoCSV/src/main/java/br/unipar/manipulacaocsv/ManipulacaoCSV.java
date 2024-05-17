@@ -6,7 +6,7 @@ import br.unipar.manipulacaocsv.views.ManipulacaoCSVJFrame;
  *
  * @author Antony
  */
-public class ManupulacaoCSV {
+public class ManipulacaoCSV {
 
     public static void main(String[] args) {
         ManipulacaoCSVJFrame frame = new ManipulacaoCSVJFrame();
