@@ -6,6 +6,8 @@ import br.unipar.manipulacaocsv.services.PessoaService;
 import br.unipar.manipulacaocsv.tablemodels.PessoaTableModel;
 import java.awt.FileDialog;
 import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,6 +19,10 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +34,39 @@ public class ManipulacaoCSVJFrame extends javax.swing.JFrame {
 
     public ManipulacaoCSVJFrame() {
         initComponents();
+        
+        //Add menu
+        JMenuBar menuBar = new JMenuBar();
+        JMenu ferramentasMenu = new JMenu("Ferramentas");
+        JMenuItem exportarBancoItem = new JMenuItem("Exportar Banco");
+        ferramentasMenu.add(exportarBancoItem);
+        menuBar.add(ferramentasMenu);
+        
+        setJMenuBar(menuBar);
+        
+        //Listener do menuItem
+         exportarBancoItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ExportacaoCSVJFrame exportacaoCSVJFrame = new ExportacaoCSVJFrame();
+                exportacaoCSVJFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                
+                // Hide this frame
+                ManipulacaoCSVJFrame.this.setVisible(false);
+                
+                // When the new frame is closed, show this frame
+                exportacaoCSVJFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                        limparTabela();
+                        ManipulacaoCSVJFrame.this.setVisible(true);
+                    }
+                });
+                
+                exportacaoCSVJFrame.setVisible(true);
+                exportacaoCSVJFrame.requestFocus();
+            }
+        });
+                
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -100,14 +139,38 @@ public class ManipulacaoCSVJFrame extends javax.swing.JFrame {
         if (jTablePessoas.getColumnModel().getColumnCount() > 0) {
             jTablePessoas.getColumnModel().getColumn(0).setResizable(false);
             jTablePessoas.getColumnModel().getColumn(0).setPreferredWidth(40);
+            jTablePessoas.getColumnModel().getColumn(0).setHeaderValue("ID");
+            jTablePessoas.getColumnModel().getColumn(1).setHeaderValue("Nome");
             jTablePessoas.getColumnModel().getColumn(2).setPreferredWidth(40);
+            jTablePessoas.getColumnModel().getColumn(2).setHeaderValue("Idade");
             jTablePessoas.getColumnModel().getColumn(3).setPreferredWidth(80);
+            jTablePessoas.getColumnModel().getColumn(3).setHeaderValue("CPF");
             jTablePessoas.getColumnModel().getColumn(4).setPreferredWidth(80);
+            jTablePessoas.getColumnModel().getColumn(4).setHeaderValue("RG");
             jTablePessoas.getColumnModel().getColumn(5).setPreferredWidth(80);
+            jTablePessoas.getColumnModel().getColumn(5).setHeaderValue("Nascimento");
             jTablePessoas.getColumnModel().getColumn(6).setPreferredWidth(65);
+            jTablePessoas.getColumnModel().getColumn(6).setHeaderValue("Sexo");
             jTablePessoas.getColumnModel().getColumn(7).setPreferredWidth(65);
+            jTablePessoas.getColumnModel().getColumn(7).setHeaderValue("Signo");
             jTablePessoas.getColumnModel().getColumn(8).setPreferredWidth(80);
+            jTablePessoas.getColumnModel().getColumn(8).setHeaderValue("Mãe");
             jTablePessoas.getColumnModel().getColumn(9).setPreferredWidth(80);
+            jTablePessoas.getColumnModel().getColumn(9).setHeaderValue("Pai");
+            jTablePessoas.getColumnModel().getColumn(10).setHeaderValue("Email");
+            jTablePessoas.getColumnModel().getColumn(11).setHeaderValue("Senha");
+            jTablePessoas.getColumnModel().getColumn(12).setHeaderValue("CEP");
+            jTablePessoas.getColumnModel().getColumn(13).setHeaderValue("Endereço");
+            jTablePessoas.getColumnModel().getColumn(14).setHeaderValue("Número");
+            jTablePessoas.getColumnModel().getColumn(15).setHeaderValue("Bairro");
+            jTablePessoas.getColumnModel().getColumn(16).setHeaderValue("Cidade");
+            jTablePessoas.getColumnModel().getColumn(17).setHeaderValue("Estado");
+            jTablePessoas.getColumnModel().getColumn(18).setHeaderValue("Telefone");
+            jTablePessoas.getColumnModel().getColumn(19).setHeaderValue("Celular");
+            jTablePessoas.getColumnModel().getColumn(20).setHeaderValue("Altura");
+            jTablePessoas.getColumnModel().getColumn(21).setHeaderValue("Peso");
+            jTablePessoas.getColumnModel().getColumn(22).setHeaderValue("Tipo Sanguíneo");
+            jTablePessoas.getColumnModel().getColumn(23).setHeaderValue("Cor");
         }
 
         jButtonInserir.setText("Inserir no banco");
@@ -193,11 +256,12 @@ public class ManipulacaoCSVJFrame extends javax.swing.JFrame {
                     .addComponent(labelEditando, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCarregar, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextFieldCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonCarregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -336,43 +400,47 @@ public class ManipulacaoCSVJFrame extends javax.swing.JFrame {
         try(FileReader leitor = new FileReader(arquivo)) {
             try(BufferedReader buffer = new BufferedReader(leitor)) {
                 
-                String[] cabecario = buffer.readLine().split(",");
+                String[] cabecalho = buffer.readLine().split(";");
                 String linhas;
                 int id = 0;
+                boolean temId = cabecalho[0].equalsIgnoreCase("id");
+
                 
                 while ((linhas = buffer.readLine()) != null) {
-                    String[] campos = linhas.split(",");
+                    int ajuste = temId ? 1 : 0;  // Ajusta o índice se tiver id
+                    
+                    String[] campos = linhas.split(";");
                     PessoaEntity pessoa = new PessoaEntity();
                     
-                    pessoa.setId(id++);
-                    pessoa.setNome(campos[0]);
-                    pessoa.setIdade(Integer.parseInt(campos[1]));
-                    pessoa.setCpf(campos[2]);
-                    pessoa.setRg(campos[3]);
+                    pessoa.setId(temId ? Integer.parseInt(campos[0]) : id++);
+                    pessoa.setNome(campos[0 + ajuste]);
+                    pessoa.setIdade(Integer.parseInt(campos[1 + ajuste]));
+                    pessoa.setCpf(campos[2 + ajuste]);
+                    pessoa.setRg(campos[3 + ajuste]);
 
-                    //data
+                    // Processar a data
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    LocalDate date = LocalDate.parse(campos[4], formatter);
+                    LocalDate date = LocalDate.parse(campos[4 + ajuste], formatter);
                     pessoa.setData_nasc(Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
-                    pessoa.setSexo(campos[5]);
-                    pessoa.setSigno(campos[6]);
-                    pessoa.setMae(campos[7]);
-                    pessoa.setPai(campos[8]);
-                    pessoa.setEmail(campos[9]);
-                    pessoa.setSenha(campos[10]);
-                    pessoa.setCep(campos[11]);
-                    pessoa.setEndereco(campos[12]);
-                    pessoa.setNumero(campos[13]);
-                    pessoa.setBairro(campos[14]);
-                    pessoa.setCidade(campos[15]);
-                    pessoa.setEstado(campos[16]);
-                    pessoa.setTelefone_fixo(campos[17]);
-                    pessoa.setCelular(campos[18]);
-                    pessoa.setAltura(Double.valueOf(campos[19]));
-                    pessoa.setPeso(Double.valueOf(campos[20]));
-                    pessoa.setTipo_sanguineo(campos[21]);
-                    pessoa.setCor(campos[22]);
+                    pessoa.setSexo(campos[5 + ajuste]);
+                    pessoa.setSigno(campos[6 + ajuste]);
+                    pessoa.setMae(campos[7 + ajuste]);
+                    pessoa.setPai(campos[8 + ajuste]);
+                    pessoa.setEmail(campos[9 + ajuste]);
+                    pessoa.setSenha(campos[10 + ajuste]);
+                    pessoa.setCep(campos[11 + ajuste]);
+                    pessoa.setEndereco(campos[12 + ajuste]);
+                    pessoa.setNumero(campos[13 + ajuste]);
+                    pessoa.setBairro(campos[14 + ajuste]);
+                    pessoa.setCidade(campos[15 + ajuste]);
+                    pessoa.setEstado(campos[16 + ajuste]);
+                    pessoa.setTelefone_fixo(campos[17 + ajuste]);
+                    pessoa.setCelular(campos[18 + ajuste]);
+                    pessoa.setAltura(Double.valueOf(campos[19 + ajuste]));
+                    pessoa.setPeso(Double.valueOf(campos[20 + ajuste]));
+                    pessoa.setTipo_sanguineo(campos[21 + ajuste]);
+                    pessoa.setCor(campos[22 + ajuste]);
 
                     listPessoas.add(pessoa);
                 }
@@ -482,13 +550,12 @@ public class ManipulacaoCSVJFrame extends javax.swing.JFrame {
         return alteracoes;
     }
     
-    private void removeBanco() {
+    private void removeBanco() throws IllegalArgumentException{
         PessoaService pessoaService = new PessoaService();
         int[] selecoes = jTablePessoas.getSelectedRows();
         
         if(selecoes.length == 0) {
-            JOptionPane.showMessageDialog(null, "Selecione um item e tente novamente", "Nenhum item selecionado", JOptionPane.ERROR_MESSAGE);
-            return;
+            throw new IllegalArgumentException("Nenhum item informado");
         }
 
         // Obtém os IDs das pessoas selecionadas e adiciona à lista
@@ -519,7 +586,12 @@ public class ManipulacaoCSVJFrame extends javax.swing.JFrame {
 
     private void excluirRow() {
         if(tipoAcao == 'B') {
-            removeBanco();
+            try{
+                removeBanco();
+            } catch(IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(null, "Selecione um item e tente novamente", "Nenhum item selecionado", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         }
         else if(tipoAcao == 'A') {
             int[] selecoes = jTablePessoas.getSelectedRows();
@@ -534,6 +606,8 @@ public class ManipulacaoCSVJFrame extends javax.swing.JFrame {
                 ((DefaultTableModel) jTablePessoas.getModel()).removeRow(row);
             }
         }
+        
+        JOptionPane.showMessageDialog(null, "Item(s) removido(s) com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

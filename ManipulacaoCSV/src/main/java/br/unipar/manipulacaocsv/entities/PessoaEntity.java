@@ -336,7 +336,7 @@ public class PessoaEntity {
     public void setCor(String cor) {
         this.cor = cor;
     }
-
+    
     @Override
     public String toString() {
         String pattern = "dd/MM/yyyy";
